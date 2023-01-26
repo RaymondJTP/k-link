@@ -1,0 +1,16 @@
+[
+    {
+        "id" : 1,
+        "productName" : "Baju",
+        "quantity" : 10,
+        "price" : 50000,
+        "description" : "Baju bagus"
+    },
+    {
+        "id" : 2,
+        "productName" : "Celana",
+        "quantity" : 20,
+        "price" : 40000,
+        "description" : "Celana bagus"
+    }
+]
