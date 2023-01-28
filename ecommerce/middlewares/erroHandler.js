@@ -16,7 +16,7 @@ const errorHandler = (err,req,res,next) => {
         res.status(400).json({message: 'File size must be under 225K'})
     }else if(err.name == 'SequelizeUniqueConstraintError'){
         res.status(400).json({message: 'Email has already been existed'})
-    }else if(err.name == 'Not found'){
+    }else if(err.name == 'notfound'){
         res.status(404).json({message: err.message})
     }else if(err.name == 'notuser'){
         res.status(403).json({message: err.message})
