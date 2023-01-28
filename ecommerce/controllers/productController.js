@@ -48,6 +48,10 @@ class Controller{
                 throw ({name : 'notfound', message: `Product with id ${productId} is not found`})
             };
 
+            if(findProduct.quantity == 0){
+                throw ({name: 'notfound', message: 'Stock empty, stay tune for more updated stock!'})
+            };
+
             //cek quantity
             if(findProduct.quantity < quantity){
                 throw ({name : 'badrequest', message : `We only have ${findProduct.quantity}, please decrese your quantity input`})
@@ -56,10 +60,36 @@ class Controller{
             //input to cache redis
             await redis.set(`cartsuser${userId}product${productId}`, JSON.stringify(findProduct));
 
-            res.status(200).json({message : `Product with id ${productId} hse been added to your cart`})
+            res.status(200).json({message : `Product with id ${productId} hse been added to your cart`});
             
         } catch (err) {
             next(err)
+        }
+    }
+
+    static async paymentProduct(req,res,next){
+        try {
+            const productId = +req.params.id;
+            const userId = +req.user.id;
+            const payment = +req.body.payment;
+            const getTransactionChart = {}
+
+            const chartCache = await redis.get(`cartsuser${userId}product${productId}`);
+
+            if(chartCache){
+                getTransactionChart = JSON.parse(chartCache)
+            }else{
+                throw ({name: 'notfound', message: `There is no transaction with product number ${productId}`})
+            };
+
+            if(getTransactionChart.price !== payment){
+                throw({name:'badrequest', message: `Please compelete the payment with the exact amount`})
+            };
+
+            
+
+
+        } catch (err) {
             
         }
     }
