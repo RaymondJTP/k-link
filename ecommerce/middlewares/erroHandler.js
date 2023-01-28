@@ -6,7 +6,7 @@ const errorHandler = (err,req,res,next) => {
         res.status(400).json({message: 'Your email or password is invalid'})
     }else if(err.name == 'You cant access'){
         res.status(403).json({message: 'You cant access'})
-    }else if(err.name == 'unique' || err.name == 'badrequest'){
+    }else if(err.name == 'unique' || err.name == 'badrequest' || err.name == 'productused'){
         res.status(400).json({message: err.message})
     }else if(err.name == 'TypeError'){
         res.status(400).json({message: 'Error type'})
