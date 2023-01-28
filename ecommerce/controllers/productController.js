@@ -11,6 +11,28 @@ class Controller{
         }
     }
 
+    static async addProduct(req,res,next){
+        try {
+            const {productName,quantity,price,description} = req.body;
+            
+            const findProduct = await Products.findOne({
+                where : {productName}
+            });
+
+            if(findProduct){
+                throw ({name: 'productused', message : 'Please input product with different name'})
+            };
+
+            const result = await Products.create({
+                productName,quantity,price,description
+            });
+
+            res.status(201).json(result)
+        } catch (err) {
+            next(err);
+        }
+    }
+
     static addToChart(req,res,next){
 
     }
