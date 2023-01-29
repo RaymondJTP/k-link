@@ -16,5 +16,8 @@
     "jsonwebtoken": "^9.0.0",
     "pg": "^8.8.0",
     "sequelize": "^6.28.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }
