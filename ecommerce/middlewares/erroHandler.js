@@ -4,8 +4,8 @@ const errorHandler = (err,req,res,next) => {
         res.status(400).json({message: err.errors[0].message})
     }else if(err.name == 'invalidlogin'){
         res.status(400).json({message: 'Your email or password is invalid'})
-    }else if(err.name == 'You cant access'){
-        res.status(403).json({message: 'You cant access'})
+    }else if(err.name == 'unauthorized'){
+        res.status(403).json({message: err.message})
     }else if(err.name == 'unique' || err.name == 'badrequest' || err.name == 'productused'){
         res.status(400).json({message: err.message})
     }else if(err.name == 'TypeError'){
@@ -18,8 +18,6 @@ const errorHandler = (err,req,res,next) => {
         res.status(400).json({message: 'Email has already been existed'})
     }else if(err.name == 'notfound'){
         res.status(404).json({message: err.message})
-    }else if(err.name == 'notuser'){
-        res.status(403).json({message: err.message})
     }else if(err.name == 'unauthentication' || err.name == "JsonWebTokenError"){
         res.status(401).json({message: 'Please login first to access'})
     }else{

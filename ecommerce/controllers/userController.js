@@ -1,6 +1,7 @@
 const {Users} = require("../models")
 const {comparePassword} = require('../helpers/bcrypt')
-const {signToken} = require('../helpers/jwt')
+const {signToken} = require('../helpers/jwt');
+const e = require("express");
 
 class Controller{
     static async register(req,res,next){
@@ -9,6 +10,12 @@ class Controller{
 
             if(!email || !password){
                 throw ({name: 'badrequest', message: 'please fill email and password'});
+            }
+
+            if(role !== 'admin'){
+                if(role !== 'user'){
+                    throw ({name: 'badrequest', message: 'please input role with admin or user'});
+                }
             }
             const findUser = await Users.findOne({
                 where : {
