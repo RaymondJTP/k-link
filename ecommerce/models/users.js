@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Users.hasMany(models.historypayment, {foreignKey : 'userId'})
     }
   };
   Users.init({
