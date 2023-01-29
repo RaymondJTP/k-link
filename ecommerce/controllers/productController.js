@@ -1,4 +1,4 @@
-const {Products} = require("../models")
+const {Products, historypayment} = require("../models")
 const redis = require("../helpers/configRedis")
 
 class Controller{
@@ -57,6 +57,9 @@ class Controller{
                 throw ({name : 'badrequest', message : `We only have ${findProduct.quantity}, please decrese your quantity input`})
             };
 
+            //set data untuk redis
+            findProduct.quantity = quantity
+            findProduct.price = quantity * findProduct.price
             //input to cache redis
             await redis.set(`cartsuser${userId}product${productId}`, JSON.stringify(findProduct));
 
@@ -72,25 +75,36 @@ class Controller{
             const productId = +req.params.id;
             const userId = +req.user.id;
             const payment = +req.body.payment;
-            const getTransactionChart = {}
+
+            const findProduct = await Products.findByPk(productId);
 
             const chartCache = await redis.get(`cartsuser${userId}product${productId}`);
-
-            if(chartCache){
-                getTransactionChart = JSON.parse(chartCache)
-            }else{
+            
+            if(!chartCache){
                 throw ({name: 'notfound', message: `There is no transaction with product number ${productId}`})
-            };
+            }
 
+            const getTransactionChart = JSON.parse(chartCache)
+           
             if(getTransactionChart.price !== payment){
                 throw({name:'badrequest', message: `Please compelete the payment with the exact amount`})
             };
 
-            
+            const result = await Products.update(
+                {quantity : findProduct.quantity - getTransactionChart.quantity},
+                {where: {id:productId}, returning : true}
+            );
 
+            await redis.del(`cartsuser${userId}product${productId}`)
 
+            const history = await historypayment.create({
+                userId,productId,quantity : getTransactionChart.quantity, totalAmount : payment
+            });
+
+            res.status(200).json({message : `Succes payment item with product id ${getTransactionChart.id}`});
         } catch (err) {
-            
+            console.log(err);
+            next(err)
         }
     }
 }
