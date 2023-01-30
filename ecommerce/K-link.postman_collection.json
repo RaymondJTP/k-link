@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "2d38019c-baf2-4480-85e1-1fb1f31dfec2",
+		"name": "K-link",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhcmZhbkBtYWlsLmNvbSIsImlhdCI6MTY3NTAxNTc1Nn0.PjMf9Z46ml1LLlKHSlEwPv-jvuNrJ-v_Gkla949fufg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new products",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhcmlxQG1haWwuY29tIiwiaWF0IjoxNjc1MDgzMjY4fQ.3MtCjXZ7vRqZxu1Vd8zDhwZ16wvD7uQBTo12Z0mHIv0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "productName",
+							"value": "tes12",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "tes data 12",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "20000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add product to cart",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhcmZhbkBtYWlsLmNvbSIsImlhdCI6MTY3NTAxNTc1Nn0.PjMf9Z46ml1LLlKHSlEwPv-jvuNrJ-v_Gkla949fufg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "productName",
+							"value": "tes",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "tes data",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "10000",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJhcmZhbkBtYWlsLmNvbSIsImlhdCI6MTY3NTAxNTc1Nn0.PjMf9Z46ml1LLlKHSlEwPv-jvuNrJ-v_Gkla949fufg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "payment",
+							"value": "20000",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "description",
+							"value": "tes data",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "price",
+							"value": "10000",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/9/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"9",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Dede",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "dede@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dede123",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Bandung",
+							"type": "text"
+						},
+						{
+							"key": "role",
+							"value": "user",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "dede@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "dede123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ariq@mail.com",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "ariq123",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "History payment",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiZW1haWwiOiJkZWRlQG1haWwuY29tIiwiaWF0IjoxNjc1MDg0MzU3fQ.eCA1FbCmJiuyzjz503uRqYJOId9a_QlCb0LGU-gJiF4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/history",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"history"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

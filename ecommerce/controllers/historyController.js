@@ -23,7 +23,7 @@ class Controller{
             });
 
             //cek jika tidak history payment
-            if(!result){
+            if(result.length === 0){
                 throw ({name : 'notfound', message : `You have not history payment yet`})
             }
 

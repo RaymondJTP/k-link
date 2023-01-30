@@ -16,6 +16,8 @@ class Controller{
         try {
             const {productName,quantity,price,description} = req.body;
             
+            if(!productName || !quantity || !price) throw ({name:'badrequest', message : 'Please input the form correctly'})
+
             const findProduct = await Products.findOne({
                 where : {productName}
             });
@@ -39,6 +41,8 @@ class Controller{
             const productId = +req.params.id;
             const userId = +req.user.id;
             const quantity = +req.body.quantity;
+
+            if(!quantity) throw ({name : 'badrequest', message: 'Please input the form correctly'})
 
             //cari produk di database
             const findProduct = await Products.findByPk(productId);
@@ -75,6 +79,8 @@ class Controller{
             const productId = +req.params.id;
             const userId = +req.user.id;
             const payment = +req.body.payment;
+
+            if(!payment) throw ({name: 'badrequest', message : 'Please input the form correctly'})
 
             const findProduct = await Products.findByPk(productId);
 
